@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.vish.mynotes.App
 import com.vish.mynotes.entities.Note
 import com.vish.mynotes.repository.NotesRepository
 import kotlinx.coroutines.launch
@@ -15,8 +16,16 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun insert(note: Note) = viewModelScope.launch {
-        repository.insert(note)
+//    fun insert(note: Note) = viewModelScope.launch {
+//        repository.insert(note)
+//    }
+
+    fun insert(note: Note) {
+//        viewModelScope
+        viewModelScope.launch {
+            repository.insert(note)
+        }
+
     }
 
     class NotesViewModelFactory(private val repository: NotesRepository) :

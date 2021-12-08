@@ -11,11 +11,11 @@ interface NoteDao {
     fun getAllNotes(): LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(note: Note)
+    fun insert(note: Note)
 
     @Delete
-    suspend fun delete(note: Note)
+    fun delete(note: Note)
 
-    @Query("DELETE FROM NOTES")
-    suspend fun deleteAll()
+//    @Query("DELETE FROM NOTES")
+//    suspend fun deleteAll()
 }

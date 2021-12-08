@@ -2,9 +2,9 @@ package com.vish.mynotes.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.vish.mynotes.App
 import com.vish.mynotes.databinding.ActivityMainBinding
 import com.vish.mynotes.entities.Note
@@ -12,15 +12,19 @@ import com.vish.mynotes.entities.Note
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
-    private val notesViewModel: NotesViewModel by viewModels {
-        NotesViewModel.NotesViewModelFactory((application as App).repository)
-    }
+//    private val notesViewModel: NotesViewModel by viewModels {
+//        NotesViewModel.NotesViewModelFactory((application as App).repository)
+//    }
+    lateinit var notesViewModel: NotesViewModel
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
+
+        //repo and vide model instances
+        val notesViewModel = ViewModelProvider(this)[NotesViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
